@@ -14,6 +14,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 # Initialize SQLAlchemy
 db.init_app(app)
 
+# Create the database and tables
+with app.app_context():
+    db.create_all()
+
 # Define routes
 @app.route('/')
 def index():
