@@ -36,6 +36,19 @@
 
   <form class="text-left hidden" id="registerForm" name="registerForm" method="post" action="/register">
     <h3 class="text-2xl font-semibold text-gray-900 mb-4 form-header">Register</h3>
+
+    <div class="mb-4">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        placeholder="Username"
+        required
+      >
+    </div>
+
     <div class="mb-4">
       <label for="regEmail" class="form-label">Email address</label>
       <input
