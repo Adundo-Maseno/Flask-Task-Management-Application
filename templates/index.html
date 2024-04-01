@@ -87,22 +87,42 @@
     <nav class="bg-gray-800 text-white p-4">
       <div class="container mx-auto flex justify-between items-center">
         <a href="#" class="text-lg font-bold flex items-center">
-          <img src="logo.png" alt="Logo" class="h-8 mr-2" />
+          <i class="fas fa-clipboard-list mr-2"></i>
+          <!-- Font Awesome home icon -->
           Flask Task Management Application
         </a>
         <ul class="flex space-x-4">
-          <li><a href="#" class="nav-link hover:text-gray-300">Home</a></li>
+          <li>
+            <a href="#" class="nav-link hover:text-gray-300"
+              ><i class="fas fa-home mr-2">Home</i></a
+            >
+          </li>
+          {% if current_user.is_authenticated %}
+          <!-- Show logout link if user is authenticated -->
+          <li>
+            <a
+              href="{{ url_for('logout') }}"
+              class="nav-link hover:text-gray-300"
+              id="logoutLink"
+            >
+              <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </a>
+          </li>
+          {% else %}
+          <!-- Show login link if user is not authenticated -->
           <li>
             <a href="#" class="nav-link hover:text-gray-300" id="loginLink">
               <i class="fas fa-sign-in-alt mr-1"></i> Login
             </a>
           </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
 
     <!-- Include the login/register modal partial -->
     {% include 'register.html' %}
+    <p>{{ current_user }}</p>
 
     <!-- Your custom JavaScript -->
     <script>
@@ -146,4 +166,3 @@
     </script>
   </body>
 </html>
-

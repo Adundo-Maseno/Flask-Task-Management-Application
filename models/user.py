@@ -1,9 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -23,3 +24,23 @@ class User(db.Model):
     def check_password(self, password):
         """Checks if the provided password matches the hashed password."""
         return check_password_hash(self.password_hash, password)
+
+    # Required methods for Flask-Login
+    def get_id(self):
+        """Returns the user ID as a string."""
+        return str(self.id)
+
+    @property
+    def is_authenticated(self):
+        """Returns True if the user is authenticated, i.e., they have provided valid credentials."""
+        return True
+
+    @property
+    def is_active(self):
+        """Returns True if the user's account is active."""
+        return True
+
+    @property
+    def is_anonymous(self):
+        """Returns True if the current user is an anonymous user."""
+        return False
