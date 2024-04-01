@@ -147,7 +147,6 @@
       });
 
       // Get references to the login and registration links
-      const registerLink = document.getElementById("registerLink");
 
       // Function to show the login modal and hide the registration modal
       function showLoginModal() {
@@ -166,6 +165,24 @@
 
       // Event listener to switch to login modal
       loginBtn.addEventListener("click", showLoginModal);
+
+      // Event listener for login form submission
+      loginForm.addEventListener("submit", (event) => {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Submit the login form
+        loginForm.submit();
+      });
+
+      // Event listener for register form submission
+      registerForm.addEventListener("submit", (event) => {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Submit the register form
+        registerForm.submit();
+      });
     </script>
   </body>
 </html>
