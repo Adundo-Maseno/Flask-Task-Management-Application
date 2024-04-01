@@ -27,6 +27,14 @@
         placeholder="Enter your password"
       />
     </div>
+    <button
+      type="submit"
+      class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+      id="loginBtn"
+      form="loginForm"
+    >
+      <i class="fas fa-sign-in-alt mr-2"></i> Login
+    </button>
   </form>
   <form class="text-left hidden" id="registerForm" name="registerForm" method="post" action="/register">
     <h3 class="text-lg font-medium text-gray-900 mb-4 form-header">Register</h3>
@@ -60,23 +68,13 @@
         placeholder="Confirm your password"
       />
     </div>
-  </form>
-  <div class="flex justify-between items-center">
     <button
-      type="button"
-      class="w-1/2 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-      id="loginBtn"
-      form="loginForm"
-    >
-      <i class="fas fa-sign-in-alt mr-2"></i> Login
-    </button>
-    <button
-      type="button"
-      class="w-1/2 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+      type="submit"
+      class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
       id="registerBtn"
       form="registerForm"
     >
       <i class="fas fa-user-plus mr-2"></i> Register
     </button>
-  </div>
+  </form>
 </div>
