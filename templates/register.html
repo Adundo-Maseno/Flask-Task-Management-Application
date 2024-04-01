@@ -1,0 +1,82 @@
+<div class="modal-overlay" id="modalOverlay"></div>
+<div class="modal-container" id="modalContainer">
+  <form class="text-left" id="loginForm" name="loginForm" method="post" action="/login">
+    <h3
+      class="text-lg font-medium text-gray-900 mb-4 form-header"
+      id="modalTitle"
+    >
+      Login
+    </h3>
+    <div class="mb-4 relative">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="focus:border-gray-700"
+        placeholder="Enter your email address"
+      />
+    </div>
+    <div class="mb-4 relative">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="focus:border-gray-700"
+        placeholder="Enter your password"
+      />
+    </div>
+  </form>
+  <form class="text-left hidden" id="registerForm" name="registerForm" method="post" action="/register">
+    <h3 class="text-lg font-medium text-gray-900 mb-4 form-header">Register</h3>
+    <div class="mb-4 relative">
+      <label for="regEmail" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="regEmail"
+        id="regEmail"
+        class="focus:border-gray-700"
+        placeholder="Enter your email address"
+      />
+    </div>
+    <div class="mb-4 relative">
+      <label for="regPassword" class="form-label">Password</label>
+      <input
+        type="password"
+        name="regPassword"
+        id="regPassword"
+        class="focus:border-gray-700"
+        placeholder="Enter your password"
+      />
+    </div>
+    <div class="mb-4 relative">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        class="focus:border-gray-700"
+        placeholder="Confirm your password"
+      />
+    </div>
+  </form>
+  <div class="flex justify-between items-center">
+    <button
+      type="button"
+      class="w-1/2 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+      id="loginBtn"
+      form="loginForm"
+    >
+      <i class="fas fa-sign-in-alt mr-2"></i> Login
+    </button>
+    <button
+      type="button"
+      class="w-1/2 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+      id="registerBtn"
+      form="registerForm"
+    >
+      <i class="fas fa-user-plus mr-2"></i> Register
+    </button>
+  </div>
+</div>

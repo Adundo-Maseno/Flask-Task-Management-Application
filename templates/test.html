@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tfs</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* Custom CSS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      z-index: 1001;
+      display: none;
+    }
+
+    .modal-container.visible {
+      display: block;
+    }
+
+    .form-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #4a5568;
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      font-size: 0.875rem;
+      font-weight: bold;
+      color: #4a5568;
+      margin-bottom: 0.25rem;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: calc(100% - 2.5rem); /* Adjusted width to accommodate icon */
+      padding: 0.5rem 2.5rem 0.5rem 0.5rem; /* Adjusted padding to accommodate icon */
+      margin-top: 0.5rem;
+      border: none;
+      border-bottom: 2px solid #cbd5e0;
+      outline: none;
+      transition: border-bottom-color 0.3s ease;
+      position: relative; /* Added position relative */
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-bottom-color: #4a5568;
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0.5rem; /* Adjusted position for visibility */
+      color: #4a5568;
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 0.25rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-poppins">
+  <!-- Navigation -->
+  <nav class="bg-gray-800 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-lg font-bold flex items-center">
+        <img src="logo.png" alt="Logo" class="h-8 mr-2" />
+        <!-- Adjust the height and margin as needed -->
+        Flask Task Management Application
+      </a>
+      <ul class="flex space-x-4">
+        <li><a href="#" class="nav-link hover:text-gray-300">Home</a></li>
+        <li>
+          <a href="#" class="nav-link hover:text-gray-300" id="loginLink"
+            ><i class="fas fa-sign-in-alt mr-1"></i> Login</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Login/Register Modal -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal-container" id="modalContainer">
+    <form class="text-left" id="loginForm">
+      <h3
+        class="text-lg font-medium text-gray-900 mb-4 form-header"
+        id="modalTitle"
+      >
+        Login
+      </h3>
+      <div class="mb-4 relative">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="focus:border-gray-700"
+          placeholder="Enter your email address"
+        />
+      </div>
+      <div class="mb-4 relative">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="focus:border-gray-700"
+          placeholder="Enter your password"
+        />
+      </div>
+    </form>
+    <form class="text-left hidden" id="registerForm">
+      <h3 class="text-lg font-medium text-gray-900 mb-4 form-header">
+        Register
+      </h3>
+      <div class="mb-4 relative">
+        <label for="regEmail" class="form-label">Email address</label>
+        <input
+          type="email"
+          name="regEmail"
+          id="regEmail"
+          class="focus:border-gray-700"
+          placeholder="Enter your email address"
+        />
+      </div>
+      <div class="mb-4 relative">
+        <label for="regPassword" class="form-label">Password</label>
+        <input
+          type="password"
+          name="regPassword"
+          id="regPassword"
+          class="focus:border-gray-700"
+          placeholder="Enter your password"
+        />
+      </div>
+      <div class="mb-4 relative">
+        <label for="confirmPassword" class="form-label"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          class="focus:border-gray-700"
+          placeholder="Confirm your password"
+        />
+      </div>
+    </form>
+    <div class="flex justify-between items-center">
+      <button
+        type="button"
+        class="w-1/2 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+        id="loginBtn"
+      >
+        <i class="fas fa-sign-in-alt mr-2"></i> Login
+      </button>
+      <button
+        type="button"
+        class="w-1/2 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+        id="registerBtn"
+      >
+        <i class="fas fa-user-plus mr-2"></i> Register
+      </button>
+    </div>
+  </div>
+
+  <!-- Your custom JavaScript -->
+  <script>
+    const loginLink = document.getElementById("loginLink");
+    const modalOverlay = document.getElementById("modalOverlay");
+    const modalContainer = document.getElementById("modalContainer");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const loginBtn = document.getElementById("loginBtn");
+    const registerBtn = document.getElementById("registerBtn");
+
+    loginLink.addEventListener("click", () => {
+      modalOverlay.style.display = "block";
+      modalContainer.classList.add("visible");
+    });
+
+    // Function to close modal
+    function closeModal() {
+      modalOverlay.style.display = "none";
+      modalContainer.classList.remove("visible");
+    }
+
+    // Close modal when clicking outside of it
+    modalOverlay.addEventListener("click", closeModal);
+
+    // Close modal when clicking on the close button
+    const closeButtons = document.querySelectorAll(".close-btn");
+    closeButtons.forEach(button => {
+      button.addEventListener("click", closeModal);
+    });
+
+    // Get references to the login and registration links
+    const registerLink = document.getElementById("registerLink");
+
+    // Function to show the login modal and hide the registration modal
+    function showLoginModal() {
+      loginForm.style.display = "block";
+      registerForm.style.display = "none";
+    }
+
+    // Function to show the registration modal and hide the login modal
+    function showRegisterModal() {
+      registerForm.style.display = "block";
+      loginForm.style.display = "none";
+    }
+
+    // Event listener to switch to registration modal
+    registerBtn.addEventListener("click", showRegisterModal);
+
+    // Event listener to switch to login modal
+    loginBtn.addEventListener("click", showLoginModal);
+  </script>
+</body>
+</html>
