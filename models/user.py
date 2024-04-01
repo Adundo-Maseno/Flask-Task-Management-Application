@@ -1,11 +1,8 @@
-# Import necessary modules
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# Create an instance of SQLAlchemy
 db = SQLAlchemy()
 
-# Define the User model
 class User(db.Model):
     __tablename__ = 'users'
 
