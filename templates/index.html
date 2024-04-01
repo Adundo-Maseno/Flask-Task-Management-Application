@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tfs</title>
+    <title>Flask Task Management Application</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -13,7 +13,6 @@
       rel="stylesheet"
     />
     <style>
-      /* Custom CSS */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -47,6 +46,20 @@
         font-weight: bold;
         color: #4a5568;
         margin-bottom: 1rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .form-header::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 2px;
+        background-color: #4a5568;
       }
 
       .form-label {
@@ -55,67 +68,41 @@
         color: #4a5568;
         margin-bottom: 0.25rem;
       }
-
-      input[type="email"],
-      input[type="password"] {
-        width: calc(100% - 2.5rem); /* Adjusted width to accommodate icon */
-        padding: 0.5rem 2.5rem 0.5rem 0.5rem; /* Adjusted padding to accommodate icon */
-        margin-top: 0.5rem;
-        border: none;
-        border-bottom: 2px solid #cbd5e0;
-        outline: none;
-        transition: border-bottom-color 0.3s ease;
-        position: relative; /* Added position relative */
+      .form-input {
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 8px;
+        border: 2px solid transparent; /* Set initial border color to transparent */
       }
-
-      input[type="email"]:focus,
-      input[type="password"]:focus {
-        border-bottom-color: #4a5568;
-      }
-
-      .input-icon {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0.5rem; /* Adjusted position for visibility */
-        color: #4a5568;
-      }
-
-      .nav-link {
-        color: #ffffff;
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        transition: background-color 0.3s ease;
-      }
-
-      .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 0.25rem;
+      .form-input:focus {
+        border: 2px solid #4a90e2;
       }
     </style>
   </head>
-  <body class="bg-gray-100 font-poppins">
+  <body class="bg-gray-100 font-sans">
     <!-- Navigation -->
     <nav class="bg-gray-800 text-white p-4">
       <div class="container mx-auto flex justify-between items-center">
         <a href="#" class="text-lg font-bold flex items-center">
           <img src="logo.png" alt="Logo" class="h-8 mr-2" />
-          <!-- Adjust the height and margin as needed -->
           Flask Task Management Application
         </a>
         <ul class="flex space-x-4">
           <li><a href="#" class="nav-link hover:text-gray-300">Home</a></li>
           <li>
-            <a href="#" class="nav-link hover:text-gray-300" id="loginLink"
-              ><i class="fas fa-sign-in-alt mr-1"></i> Login</a
-            >
+            <a href="#" class="nav-link hover:text-gray-300" id="loginLink">
+              <i class="fas fa-sign-in-alt mr-1"></i> Login
+            </a>
           </li>
         </ul>
       </div>
     </nav>
+
     <!-- Include the login/register modal partial -->
     {% include 'register.html' %}
     <!-- Login/Register Modal -->
+    <!-- Your custom JavaScript -->
+
     <!-- Your custom JavaScript -->
     <script>
       const loginLink = document.getElementById("loginLink");
@@ -123,12 +110,22 @@
       const modalContainer = document.getElementById("modalContainer");
       const loginForm = document.getElementById("loginForm");
       const registerForm = document.getElementById("registerForm");
-      const loginBtn = document.getElementById("loginBtn");
-      const registerBtn = document.getElementById("registerBtn");
+      const switchToRegister = document.getElementById("switchToRegister");
+      const switchToLogin = document.getElementById("switchToLogin");
 
       loginLink.addEventListener("click", () => {
         modalOverlay.style.display = "block";
         modalContainer.classList.add("visible");
+      });
+
+      switchToRegister.addEventListener("click", () => {
+        loginForm.classList.add("hidden");
+        registerForm.classList.remove("hidden");
+      });
+
+      switchToLogin.addEventListener("click", () => {
+        loginForm.classList.remove("hidden");
+        registerForm.classList.add("hidden");
       });
 
       // Function to close modal
@@ -144,44 +141,6 @@
       const closeButtons = document.querySelectorAll(".close-btn");
       closeButtons.forEach((button) => {
         button.addEventListener("click", closeModal);
-      });
-
-      // Get references to the login and registration links
-
-      // Function to show the login modal and hide the registration modal
-      function showLoginModal() {
-        loginForm.style.display = "block";
-        registerForm.style.display = "none";
-      }
-
-      // Function to show the registration modal and hide the login modal
-      function showRegisterModal() {
-        registerForm.style.display = "block";
-        loginForm.style.display = "none";
-      }
-
-      // Event listener to switch to registration modal
-      registerBtn.addEventListener("click", showRegisterModal);
-
-      // Event listener to switch to login modal
-      loginBtn.addEventListener("click", showLoginModal);
-
-      // Event listener for login form submission
-      loginForm.addEventListener("submit", (event) => {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-
-        // Submit the login form
-        loginForm.submit();
-      });
-
-      // Event listener for register form submission
-      registerForm.addEventListener("submit", (event) => {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-
-        // Submit the register form
-        registerForm.submit();
       });
     </script>
   </body>
