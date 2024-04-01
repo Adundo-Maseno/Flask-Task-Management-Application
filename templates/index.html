@@ -80,49 +80,95 @@
       .form-input:invalid {
         border: 2px solid #9b9292;
       }
+      .flash-message {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+      }
+      /* Hamburger menu styles */
+    .hamburger-menu {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        right: 0;
+        background-color: #1a202c;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-links.visible {
+        display: block;
+      }
+    }
     </style>
   </head>
   <body class="bg-gray-100 font-sans">
     <!-- Navigation -->
-    <nav class="bg-gray-800 text-white p-4">
-      <div class="container mx-auto flex justify-between items-center">
-        <a href="#" class="text-lg font-bold flex items-center">
-          <i class="fas fa-clipboard-list mr-2"></i>
-          <!-- Font Awesome home icon -->
-          Flask Task Management Application
-        </a>
-        <ul class="flex space-x-4">
-          <li>
-            <a href="#" class="nav-link hover:text-gray-300"
-              ><i class="fas fa-home mr-2">Home</i></a
-            >
-          </li>
-          {% if current_user.is_authenticated %}
-          <!-- Show logout link if user is authenticated -->
-          <li>
-            <a
-              href="{{ url_for('logout') }}"
-              class="nav-link hover:text-gray-300"
-              id="logoutLink"
-            >
-              <i class="fas fa-sign-out-alt mr-1"></i> Logout
-            </a>
-          </li>
-          {% else %}
-          <!-- Show login link if user is not authenticated -->
-          <li>
-            <a href="#" class="nav-link hover:text-gray-300" id="loginLink">
-              <i class="fas fa-sign-in-alt mr-1"></i> Login
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </nav>
+     <!-- Navigation -->
+  <nav class="bg-gray-800 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="#" class="text-lg font-bold flex items-center">
+        <i class="fas fa-clipboard-list mr-2"></i>
+        <!-- Font Awesome home icon -->
+        Flask Task Management Application
+      </a>
+      <!-- Hamburger menu for small screens -->
+      <button class="hamburger-menu text-white block lg:hidden focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Navigation links -->
+      <ul class="nav-links hidden lg:flex space-x-4">
+        <li>
+          <a href="#" class="nav-link hover:text-gray-300">
+            <i class="fas fa-home mr-2"></i> Home
+          </a>
+        </li>
+        {% if current_user.is_authenticated %}
+        <li>
+          <a href="{{ url_for('logout') }}" class="nav-link hover:text-gray-300">
+            <i class="fas fa-sign-out-alt mr-1"></i> Logout
+          </a>
+        </li>
+        {% else %}
+        <li>
+          <a href="#" class="nav-link hover:text-gray-300" id="loginLink">
+            <i class="fas fa-sign-in-alt mr-1"></i> Login
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
 
     <!-- Include the login/register modal partial -->
     {% include 'register.html' %}
+
     <p>{{ current_user }}</p>
+
+    <!-- Inside your template, such as index.html -->
+    {% include 'flash_messages.html' %}
+    <!-- <ul>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+              <li class="flash-{{category}}">{{ message }}</li>
+          {% endfor %}
+      {% endif %}
+  {% endwith %}
+</ul> -->
 
     <!-- Your custom JavaScript -->
     <script>
@@ -163,6 +209,17 @@
       closeButtons.forEach((button) => {
         button.addEventListener("click", closeModal);
       });
+
+      // Toggle visibility of navigation links on small screens
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburgerMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('visible');
+    });
+
+      
     </script>
   </body>
 </html>
+

@@ -1,93 +1,93 @@
 <!-- Login/Register Modal -->
 <div class="modal-overlay" id="modalOverlay"></div>
-<div class="modal-container" id="modalContainer">
+<div class="modal-container py-6 px-4 sm:px-6 lg:px-8" id="modalContainer">
   <form class="text-left" id="loginForm" name="loginForm" method="post" action="/login">
     <h3 class="text-2xl font-semibold text-gray-900 mb-4 form-header">Login</h3>
     <div class="mb-4">
-      <label for="email" class="form-label">Email address</label>
+      <label for="email" class="form-label sr-only">Email address</label>
       <input
         type="email"
         name="email"
         id="email"
-        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-3"
         placeholder="Email address"
         required
       >
     </div>
     <div class="mb-4">
-      <label for="password" class="form-label">Password</label>
+      <label for="password" class="form-label sr-only">Password</label>
       <input
         type="password"
         name="password"
         id="password"
-        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-3"
         placeholder="Password"
         required
       >
     </div>
     <button
       type="submit"
-      class="w-full rounded-md bg-blue-600 text-white py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      class="w-full rounded-md bg-blue-600 text-white py-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <i class="fas fa-sign-in-alt mr-2"></i> Login
     </button>
-    <p class="mt-4 text-center">Don't have an account? <a href="#" id="switchToRegister" class="text-blue-600">Register here</a></p>
+    <p class="mt-4 text-center text-gray-600">Don't have an account? <a href="#" id="switchToRegister" class="text-blue-600">Register here</a></p>
   </form>
 
   <form class="text-left hidden" id="registerForm" name="registerForm" method="post" action="/register">
     <h3 class="text-2xl font-semibold text-gray-900 mb-4 form-header">Register</h3>
 
     <div class="mb-4">
-      <label for="username" class="form-label">Username</label>
+      <label for="username" class="form-label sr-only">Username</label>
       <input
         type="text"
         name="username"
         id="username"
-        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-3"
         placeholder="Username"
         required
       >
     </div>
 
     <div class="mb-4">
-      <label for="regEmail" class="form-label">Email address</label>
+      <label for="regEmail" class="form-label sr-only">Email address</label>
       <input
         type="email"
         name="regEmail"
         id="regEmail"
-        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-3"
         placeholder="Email address"
         required
       >
     </div>
     <div class="mb-4">
-      <label for="regPassword" class="form-label">Password</label>
+      <label for="regPassword" class="form-label sr-only">Password</label>
       <input
         type="password"
         name="regPassword"
         id="regPassword"
-        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-3"
         placeholder="Password"
         required
       >
     </div>
     <div class="mb-4">
-      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <label for="confirmPassword" class="form-label sr-only">Confirm Password</label>
       <input
         type="password"
         name="confirmPassword"
         id="confirmPassword"
-        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-2"
+        class="form-input block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-700 focus:ring focus:ring-gray-300 p-3"
         placeholder="Confirm Password"
         required
       >
     </div>
     <button
       type="submit"
-      class="w-full rounded-md bg-blue-600 text-white py-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      class="w-full rounded-md bg-blue-600 text-white py-3 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <i class="fas fa-user-plus mr-2"></i> Register
     </button>
-    <p class="mt-4 text-center">Already have an account? <a href="#" id="switchToLogin" class="text-blue-600">Login here</a></p>
+    <p class="mt-4 text-center text-gray-600">Already have an account? <a href="#" id="switchToLogin" class="text-blue-600">Login here</a></p>
   </form>
 </div>
