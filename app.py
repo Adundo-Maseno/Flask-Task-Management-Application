@@ -30,6 +30,11 @@ def register():
         username = request.form['username']
         email = request.form['regEmail']
         password = request.form['regPassword']
+        confirm_password = request.form['confirmPasword']
+        
+         # Check if passwords match
+        if password != confirm_password:
+            return 'Passwords do not match!'
 
         # Check if username or email already exists in the database
         existing_user = User.query.filter_by(username=username).first()
